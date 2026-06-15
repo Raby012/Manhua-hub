@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0f0f0f;
+  --color-card: #1a1a1a;
+  --color-accent: #7c3aed;
+  --color-accent-foreground: #ffffff;
+  --color-muted: #666666;
+  --color-text: #ffffff;
+  --color-gold: #fbbf24;
+  --color-green: #10b981;
+  --color-red: #ef4444;
+  --font-sans: "Inter", "Poppins", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text font-sans antialiased selection:bg-accent selection:text-white;
+  }
+}
+
+@layer utilities {
+  .hero-gradient {
+    background: linear-gradient(to top, #0f0f0f 0%, rgba(15, 15, 15, 0.4) 60%, transparent 100%);
+  }
+
+  .card-gradient {
+    background: linear-gradient(transparent 50%, rgba(0,0,0,0.9));
+  }
+
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  }
+
+  .shimmer {
+    @apply relative overflow-hidden;
+  }
+
+  .shimmer::after {
+    content: "";
+    @apply absolute inset-0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    animation: shimmer-anim 1.5s infinite;
+  }
+
+  .glass-panel {
+    @apply bg-background/80 backdrop-blur-xl border border-white/5;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes shimmer-anim {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-spin-slow {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
